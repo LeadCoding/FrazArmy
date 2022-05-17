@@ -14,6 +14,8 @@ class Main {
         if (n < 0) {
             System.out.println("Error");
         }
+        else{
         System.out.println(factorial(n));
+        }
     }
 }
