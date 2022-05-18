@@ -3,7 +3,8 @@ import java.util.*;
 
 class Main {
     static int factorial(int n) {
-        if (n == 0)
+        System.out.println(n);
+        if (n == 1)
             return 1;
         return n * factorial(n - 1);
     }
