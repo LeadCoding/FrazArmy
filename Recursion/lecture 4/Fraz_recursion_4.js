@@ -26,7 +26,9 @@ return input_stdin_array[input_currentline++];
 
 function power(x, n) {
 	if (n==0) return 1;
-    return x * power(x, n-1);
+    var partialAns = power(x, n/2);
+    if (n%2 == 1) return partialAns*partialAns*x;
+    return partialAns*partialAns;
 }
 
 function main() {
