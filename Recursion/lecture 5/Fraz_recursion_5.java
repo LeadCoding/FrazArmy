@@ -7,5 +7,5 @@ boolean isPalindromeHelper(int l,int r,String s)
 }
 boolean isPalindrome(String s)
 {
-    return isPalindromeHelper(0,s.size()-1,s);
+    return isPalindromeHelper(0,length()-1,s);
 }
