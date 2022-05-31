@@ -1,7 +1,7 @@
-
-
 vector<vector<int>> helper(vector<int> &v,int i)
 {
+    //base condition
+    if(i>=v.size()) return {{}};
     vector<vector<int>> partialAns = helper(v,i+1);
     vector<vector<int>> ans;
     for(vector<int> x:partialAns)
