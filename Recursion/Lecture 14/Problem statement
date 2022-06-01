@@ -1,0 +1,4 @@
+Problem Statement
+You are given ‘K’ and ‘N’ and you have to do the following:-
+Output all possible combinations of arrays whose elements sum is equal to ‘N’ and you can use only elements in the range 1 to 9 inclusive and you can use each element only once and the size of the combination should be ‘K’.
+Two combinations are called different if there is an element that is in one combination and not in another.
