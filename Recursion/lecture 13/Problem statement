@@ -1,1 +1,5 @@
 
+Problem Statement
+You are given an array ‘Arr’ of ‘N’ positive integers. You are also given a positive integer ‘target’.
+Your task is to find all unique combinations of the array ‘Arr’ whose sum is equal to ‘target’. Each number in ‘Arr’ may only be used once in the combination.
+Elements in each combination must be in non-decreasing order and you need to print all unique combinations in lexicographical order.
