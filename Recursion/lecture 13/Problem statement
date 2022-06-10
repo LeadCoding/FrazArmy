@@ -3,3 +3,47 @@ Problem Statement
 You are given an array ‘Arr’ of ‘N’ positive integers. You are also given a positive integer ‘target’.
 Your task is to find all unique combinations of the array ‘Arr’ whose sum is equal to ‘target’. Each number in ‘Arr’ may only be used once in the combination.
 Elements in each combination must be in non-decreasing order and you need to print all unique combinations in lexicographical order.
+
+
+class Solution(object):
+    def combinationSum2(self, candidates, target):
+       
+        def helper(i,candidates,target,ans,subset,sums,n):
+            #base conditions:-
+            #1) if the sum equals to target then append and return
+            if sums == target:
+                ans.append(subset[:]) #appending copy of list, cos at last list will be empty
+                return
+            
+            #2) if i goes out of bound; then return
+            if i == n:
+                return
+            
+            #3) if sums exceeds the target; then return
+            if sums > target:
+                return
+            
+            #pick
+            subset.append(candidates[i])
+            sums += candidates[i]
+            helper(i+1,candidates,target,ans,subset,sums,n)
+
+            #backtracking
+            subset.pop()
+            sums -= candidates[i]
+            
+            #not pick
+            #to avoid duplicate elements
+            while i<n-1 and candidates[i] == candidates[i+1]:
+                i+=1
+            helper(i+1,candidates,target,ans,subset,sums,n)
+            
+        
+        ans = []
+        subset = []
+        sums = 0
+        candidates.sort()
+        n=len(candidates)
+        helper(0,candidates,target,ans,subset,sums,n)
+        
+        return ans
