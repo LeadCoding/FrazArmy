@@ -1,47 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
 
-#include <algorithm>
-
-void solve(vector<vector<int>> &result, int currIndex, int currSum, vector<int> &currList, int B, vector<int> &ARR)
-{
-    if (currSum == B)
-    {
-        result.push_back(currList);
+void help(int i, vector<int> &arr, int B, int sumTillNow, vector<int> &subSet, vector<vector<int>> &ans) {
+    
+    if(sumTillNow == B) {
+        ans.push_back(subSet);
         return;
     }
-    if (currIndex == ARR.size())
-    {
-        return;
-    }
+    if(sumTillNow > B) return;
 
-    solve(result, currIndex + 1, currSum, currList, B, ARR);
+    if(i >= arr.size()) return;
 
-    int count = 0;
+    help(i + 1, arr, B, sumTillNow, subSet, ans);
 
-    while (currSum <= B)
-    {
-        count++;
-
-        currSum += ARR[currIndex];
-
-        currList.push_back(ARR[currIndex]);
-
-        solve(result, currIndex + 1, currSum, currList, B, ARR);
-    }
-    while (count--)
-    {
-        currList.pop_back();
-    }
+    sumTillNow += arr[i];
+    subSet.push_back(arr[i]);
+    help(i, arr, B, sumTillNow, subSet, ans);
+    sumTillNow -= arr[i];
+    subSet.pop_back();
 }
 
-vector<vector<int>> combSum(vector<int> &ARR, int B)
-{
+vector<vector<int>> combSum(vector<int>& ARR, int B) {
+    vector<int> subSet;
+    int sumTillNow = 0;
+    vector<vector<int>> ans;
     sort(ARR.begin(), ARR.end());
-
-    vector<vector<int>> result;
-
-    vector<int> currList;
-
-    solve(result, 0, 0, currList, B, ARR);
-
-    return result;
+    help(0, ARR, B, sumTillNow, subSet, ans);
+    return ans;
 }
