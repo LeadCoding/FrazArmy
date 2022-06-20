@@ -20,6 +20,7 @@ const helper = (v, i, subSet, ans) => {
     helper(v, i + 1, subSetRef, ans);
 }
 var pwset = (v) => {
+    v.sort();
     let ans = [];
     let subSet = [];
     helper(v, 0, subSet, ans);
