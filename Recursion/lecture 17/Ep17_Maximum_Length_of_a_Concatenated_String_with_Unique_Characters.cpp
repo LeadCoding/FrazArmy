@@ -1,84 +1,48 @@
-// Approach 1--
-int dfs(vector<string> &strings, string currString, int position)
-{
-    unordered_set<char> st ;
+#include<bits/stdc++.h>
+using namespace std;
 
-    for(int i = 0; i < currString.length(); i++)
-    {  
-        char ch = currString[i];
-        st.insert(ch);
+bool compare(vector<int> &selected, string &currString) {
+    vector<int> selfCheck(26, 0);
+    for(int i = 0; i < currString.size(); i++) {
+        if(selfCheck[currString[i] - 'a'] == 1) return false;
+        selfCheck[currString[i] - 'a'] = 1;
     }
 
-    if (st.size() != currString.length())
-    {
-        return 0;
+    for(int i = 0; i < currString.size(); i++) {
+        if(selected[currString[i] - 'a'] == 1) return false;
     }
-
-    int res = currString.length();
-
-    for(int currPos = position; currPos < strings.size(); currPos++)
-    {
-        string str = strings[currPos];
-        res = max(res, dfs(strings, str + currString, currPos + 1));
-    }
-
-    return res;
+    return true;
 }
 
-int stringConcatenation(vector<string> &arr)
-{
-    string str = "";
-    return dfs(arr, str, 0);
+int help(int i, vector<string> &arr, vector<int> &selected, int len) {
+    
+    if(i == arr.size()) {
+        return len;
+    }
+    string currString = arr[i];
+    if(!compare(selected, currString)) {
+        return help(i + 1, arr, selected, len);
+    }
+    else {
+        for(int j = 0; j < currString.size(); j++) {
+            selected[currString[j] - 'a'] = 1;
+        }
+        len += currString.size();
+        int op1 = help(i + 1, arr, selected, len);
+        
+        for(int j = 0; j < currString.size(); j++) {
+            selected[currString[j] - 'a']  = 0;
+        }
+
+        len -= currString.size();
+        int op2 = help(i + 1, arr, selected, len);
+
+        return max(op1, op2);
+    }
 }
 
-
-// Approach 2 --
-int countSetBits(int bitSet)
-{
-    int count = 0;
-    while(bitSet) {
-        count += bitSet & 1;
-        bitSet  >>= 1;
-    }
-
-    return count;
-}
-
-int stringConcatenation(vector<string> &arr)
-{
-    vector<int> bitArr = {0};
-    int res = 0;
-
-    for(int i = 0; i < arr.size(); i++)
-    {   
-        string str = arr[i];
-
-        int bitSet = 0;
-
-        for(int j = 0; j < str.length(); j++)
-        {   
-            char ch = str[j];
-            bitSet  |= (1 << (ch - 'a'));
-        }
-
-        int n = countSetBits(bitSet);
-
-        if(n < str.length())
-        {
-            continue;
-        }
-
-        for(int j = 0; j < bitArr.size(); j++)
-        {   
-            int currBitSet = bitArr[j];
-            if (currBitSet & bitSet) {
-                continue;
-            }
-
-            bitArr.push_back(currBitSet | bitSet);
-            res = max(res, countSetBits(currBitSet) + n);
-        }
-    }
-
-    return res;
+int stringConcatenation(vector<string> &arr) {
+    // Write your code here
+    vector<int> selected(26, 0);
+    return help(0, arr, selected, 0);
 }
