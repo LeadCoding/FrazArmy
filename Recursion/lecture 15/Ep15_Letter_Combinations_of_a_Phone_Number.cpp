@@ -1,27 +1,35 @@
-void combinationsHelper(string digits, string digToStr[], int j, string temp, vector<string>&ans){
-    if(j == digits.length()){
+#include<bits/stdc++.h>
+using namespace std;
+
+void help(int i, string &s, string & temp, vector<string> &ans, unordered_map<char, string> &m) {
+    if(i == s.size()) {
         ans.push_back(temp);
         return;
     }
-    
-    int val = digits[j]-'0';
-    for(int i=0;i<digToStr[val].size();i++){
-        temp.push_back(digToStr[val][i]);
-        combinationsHelper(digits,digToStr,j+1,temp,ans);
-        temp.pop_back();   
-    }
+
+    string str = m[s[i]];
+    for(int j = 0; j < str.size(); j++) {
+        temp.push_back(str[j]);
+        help(i + 1, s, temp, ans, m);
+        temp.pop_back();
+    } 
 }
-    
-vector<string> combinations(string s){
-	string digToStr[10] = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
-    
-    int n =  s.length();
+
+vector<string> combinations(string s) {
+  
+    unordered_map<char, string> m;
+    m['2'] = "abc";
+    m['3'] = "def";
+    m['4'] = "ghi";
+    m['5'] = "jkl";
+    m['6'] = "mno";
+    m['7'] = "pqrs";
+    m['8'] = "tuv";
+    m['9'] = "wxyz";
+
+    vector<string> ans;
     string temp;
-    vector<string>ans;
-    
-    if(n == 0) {
-    	return ans;
-    }
-    combinationsHelper(s,digToStr,0,temp,ans);
+    help(0, s, temp, ans, m);
     return ans;
+
 }
