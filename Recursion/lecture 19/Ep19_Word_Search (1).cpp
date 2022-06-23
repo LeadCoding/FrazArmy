@@ -1,53 +1,30 @@
-vector<int> row = { 1, 0, -1, 0 };
-vector<int> col = { 0, 1, 0, -1 };
+#include<bits/stdc++.h>
+using namespace std;
 
-bool search(vector<vector<char>> &board, string &word, int n, int m, vector<vector<bool>> &visited, int i, int j, int currentIndex) 
-{
-    if (currentIndex >= word.length()) 
-    {
-        return true;
-    }
+bool search(int i, int j, vector<vector<char>> &board, string &word, int k, int n, int m) {
+    
+    if(k == word.size()) return true;
+    if(i < 0 || j < 0 || i == n || j == m || board[i][j] != word[k]) return false;
+    char ch = board[i][j];
+    board[i][j] = '#';
+    bool op1 = search(i + 1, j, board, word, k + 1, n, m);
+    bool op2 = search(i - 1, j, board, word, k + 1, n, m);
+    bool op3 = search(i, j + 1, board, word, k + 1, n, m);
+    bool op4 = search(i, j - 1, board, word, k + 1, n, m);
+    board[i][j] = ch;
 
-    visited[i][j] = true;
-    for (int move = 0; move < 4; move++) 
-    {
-        int r = j + row[move];
-        int c = i + col[move];
-        if (r >= 0 && c >= 0 && r < m && c < n && !visited[c][r] && word[currentIndex] == board[c][r]) 
-        {
-            if (search(board, word, n, m, visited, c, r, currentIndex + 1)) 
-            {
-                return true;
-            }
-
-        }
-    }
-
-    visited[i][j] = false;
-    return false;
+    return (op1 || op2 || op3 || op4);
 
 }
 
-bool present(vector<vector<char>> &board, string word, int n, int m) 
-{
-    vector<vector<bool>> visited(n, vector<bool>(m));
-
-    for (int i = 0; i < n; i++) 
-    {
-        for (int j = 0; j < m; j++) 
-        {
-            if (word[0] == board[i][j]) 
-            {
-
-                if (search(board, word, n, m, visited, i, j, 1)) 
-                {
-                    return true;
-                }
-
+bool present(vector<vector<char>> &board, string word, int n, int m) {
+    // Write your code here
+    for(int i = 0; i < n; i++) { 
+        for(int j = 0; j < m; j++) {
+            if(board[i][j] == word[0]) {
+                if(search(i, j, board, word, 0, n, m)) return true;
             }
-        }
+        } 
     }
-
     return false;
-
 }
