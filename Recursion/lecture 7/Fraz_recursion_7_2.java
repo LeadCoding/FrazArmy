@@ -3,14 +3,14 @@ ArrayList<Integer> subSet;
 
 void helper(ArrayList<Integer> v, int i, ArrayList<Integer> subSet, ArrayList<ArrayList<Integer>> ans) {
         if (i == v.size()) {
-            ans.add(subSet);
+            ans.add(new ArrayList(subSet));
             return;
         }
         // include the ith element
         subSet.add(v.get(i));
         helper(v, i + 1, subSet, ans);
         // not including the ith element
-        subSet.remove(i);
+        subSet.remove(subSet.size()-1);
         helper(v, i + 1, subSet, ans);
 }
 
