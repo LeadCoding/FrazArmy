@@ -61,7 +61,7 @@ all the subsets in one go. So, the Time Complexity can be said to be
 Exponential only!!
 
 
-Space Complexity: O(n+m) | n for satck memory and m = size of ans array
+Space Complexity: O(n+m) | n for stack memory and m = size of ans array
 
 Explanation: Space Complexity will be equal to height of the recursive
 tree, Which in the worst Case is equal to Target-Sum if we had 1 in

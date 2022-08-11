@@ -64,7 +64,7 @@ class Solution:
         # if array sum is not divisible by K then we can't divide array into K partitions
         
         numsSum = 0
-        for i in range(len(nums)):
+        for i in range(n):
             numsSum += nums[i]
         
         if numsSum % k != 0:
@@ -72,7 +72,7 @@ class Solution:
         
         # the required sum of each subset = sum / K
         
-        reqSum = numsSum // k
+        reqSum = numsSum / k
         
         # Initialize sum of each subset from 0
         
@@ -83,6 +83,10 @@ class Solution:
         taken = [False for i in range(n)]
         
         # call recursive method to check K-substitution condition
+        
+        subsetSum[0]=nums[n - 1]
+        
+        taken[n - 1]=True
         
         return helper(taken, reqSum, 0, n-1)
     

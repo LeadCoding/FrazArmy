@@ -69,6 +69,6 @@ public:
 };
 
 /* 
-Time Complexity: O(Exponential) or O(2^n)
-Space Complexity: O(n+m) n for stack memory and m is the size of ans array 
+Time Complexity:  O(Exponential) 
+Space Complexity: O(TargetSum) {Recursive Stack Space}
 */

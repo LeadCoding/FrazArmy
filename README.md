@@ -2,6 +2,8 @@
 
 ## <a href="https://youtube.com/playlist?list=PLjkkQ3iH4jy82KRn9jXeFyWzvX7sqYrjE">Recursion</a>
 21 Lectures
+## <a href="https://youtube.com/playlist?list=PLjkkQ3iH4jy-QRceXhVwYjJ7ToNsBs0Il">Linked List</a>
+24 Lectures
 
 # Content
 
