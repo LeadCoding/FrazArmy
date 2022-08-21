@@ -17,4 +17,4 @@
   - Java Script
 
 
-Subscribe to <a href="https://www.youtube.com/channel/LeadCodingbyfraz">LeadCoding</a> channel for all the video lectures
+Subscribe to <a href="https://www.youtube.com/c/LeadCodingbyfraz">LeadCoding</a> channel for all the video lectures
