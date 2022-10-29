@@ -1,3 +1,4 @@
+// This Factorial only works small numbers like 1-15
 import java.io.*;
 import java.util.*;
 
