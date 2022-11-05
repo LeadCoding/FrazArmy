@@ -1,7 +1,7 @@
 # Your code goes here
 # this function fac() will return us the factorial of the number n
 def fac(n):
-    if n == 0:
+    if n == 0 or n == 1:
         return 1
         
     # recursion call
